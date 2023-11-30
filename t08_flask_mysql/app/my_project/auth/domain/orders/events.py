@@ -13,7 +13,8 @@ class Events(db.Model, IDto):
     datetime = db.Column(db.DateTime, nullable=False)
     Places_idPlaces = db.Column(db.Integer, db.ForeignKey('places.idPlaces'), nullable=False)
 
-    place = db.relationship('Places', backref="events")
+    artists_events = db.relationship('ArtistsEventsConnect', backref="event")
+    place = db.relationship('Places', backref="event")
 
     def __repr__(self):
         return f"Event({self.idevent}, `{self.eventname}`, `{self.datetime}`, {self.Places_idPlaces})"
@@ -32,5 +33,18 @@ class Events(db.Model, IDto):
             "idevent": self.idevent,
             "eventname": self.eventname,
             "datetime": self.datetime,
-            "Places_idPlaces": self.Places_idPlaces
+            "Place": [
+                {
+                    "idPlaces": self.place.idPlaces,
+                    "addresses": self.place.addresses,
+                    "Place_name": self.place.Place_name
+                }
+            ],
+            "Artist": [
+                {
+                    "id": artis_event_pair.artist.idArtists,
+                    "genre": artis_event_pair.artist.genre,
+                    "artist_name": artis_event_pair.artist.artist_name,
+                }
+                for artis_event_pair in self.artists_events]
         }
