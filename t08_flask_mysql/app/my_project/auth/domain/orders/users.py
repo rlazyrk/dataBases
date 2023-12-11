@@ -11,9 +11,10 @@ class Users(db.Model, IDto):
     idUsers = db.Column(db.Integer, primary_key=True, autoincrement=True)
     User_name = db.Column(db.String(45), nullable=False)
     User_lastname = db.Column(db.String(45), nullable=False)
-    User_email = db.Column(db.String(45), nullable=False, unique=True)
-    User_phonenumber = db.Column(db.String(45), nullable=False, unique=True)
+    User_email = db.Column(db.String(45), nullable=False)
+    User_phonenumber = db.Column(db.String(45), nullable=False)
 
+    orders_user = db.relationship("Orders", backref="users")
     def __repr__(self):
         return f"User({self.idUsers}, `{self.User_name}`, `{self.User_lastname}`, `{self.User_email}`, `{self.User_phonenumber}`)"
 
@@ -33,5 +34,8 @@ class Users(db.Model, IDto):
             "User_name": self.User_name,
             "User_lastname": self.User_lastname,
             "User_email": self.User_email,
-            "User_phonenumber": self.User_phonenumber
+            "User_phonenumber": self.User_phonenumber,
+            "Orders": [
+                order.put_into_dto() for order in self.orders_user
+            ]
         }

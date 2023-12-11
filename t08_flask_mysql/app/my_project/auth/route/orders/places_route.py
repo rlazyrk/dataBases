@@ -45,3 +45,9 @@ def patch_place(place_id: int) -> Response:
 def delete_place(place_id: int) -> Response:
     places_controller.delete(place_id)
     return make_response("Place deleted", HTTPStatus.OK)
+
+
+@places_bp.get('/separate/<string:name1>/<string:name2>')
+def separate(name1: str, name2: str):
+    places_controller.separate(name1, name2)
+    return make_response(" ", HTTPStatus.OK)

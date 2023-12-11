@@ -12,6 +12,8 @@ class Places(db.Model, IDto):
     addresses = db.Column(db.String(45), nullable=False)
     Place_name = db.Column(db.String(45), nullable=False)
 
+    seats = db.relationship('Seats', backref='place_ref')
+
     def __repr__(self):
         return f"Place({self.idPlaces}, `{self.addresses}`, `{self.Place_name}`)"
 
@@ -27,5 +29,7 @@ class Places(db.Model, IDto):
         return {
             "idPlaces": self.idPlaces,
             "addresses": self.addresses,
-            "Place_name": self.Place_name
+            "Place_name": self.Place_name,
+            "Seats": [{"SeatId": seat.idSeats} for seat in self.seats]
         }
+

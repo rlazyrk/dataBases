@@ -15,6 +15,7 @@ from .orders.seats_service import SeatsService
 from .orders.tickets_service import TicketsService
 from .orders.travel_tickets_service import TravelTicketsService
 from .orders.users_service import UsersService
+from .orders.referrals_service import ReferralsService
 
 artists_service = ArtistsService()
 artists_events_connect_service = ArtistsEventConnectService()
@@ -27,3 +28,4 @@ seats_service = SeatsService()
 ticket_service = TicketsService()
 travel_ticket_service = TravelTicketsService()
 user_service = UsersService()
+referral_service = ReferralsService()

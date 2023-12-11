@@ -29,5 +29,6 @@ class Payments(db.Model, IDto):
         return {
             "idPayments": self.idPayments,
             "Orders_idOrders": self.Orders_idOrders,
-            "Payment_status": self.Payment_status
+            "Payment_status": self.Payment_status,
+            "Order": self.order.put_into_dto()
         }

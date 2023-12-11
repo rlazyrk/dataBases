@@ -15,6 +15,7 @@ from .orders.seats_controller import SeatsController
 from .orders.tickets_controller import TicketController
 from .orders.travel_tickets_controller import TravelTicketController
 from .orders.users_controller import UsersController
+from .orders.referrals_controller import ReferralsController
 
 
 artists_controller = ArtistsController()
@@ -28,3 +29,4 @@ seats_controller = SeatsController()
 tickets_controller = TicketController()
 travel_tickets_controller = TravelTicketController()
 users_controller = UsersController()
+referral_controller = ReferralsController()
