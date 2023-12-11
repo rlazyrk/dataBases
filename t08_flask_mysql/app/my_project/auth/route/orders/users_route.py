@@ -45,3 +45,15 @@ def patch_user(user_id: int) -> Response:
 def delete_user(user_id: int) -> Response:
     users_controller.delete(user_id)
     return make_response("User deleted", HTTPStatus.OK)
+
+
+@users_bp.post('/parameter_insert_user/<string:name>/<string:last_name>/<string:email>/<string:phonenumber>')
+def parameter_insert_user(name, last_name, email, phonenumber):
+    users_controller.parameter_insert_user(name, last_name, email, phonenumber)
+    return make_response("User created", HTTPStatus.OK)
+
+
+@users_bp.post('/generate_default_with_name/<string:name>')
+def generate_default_user(name):
+    users_controller.generate_default_user(name)
+    return make_response("generated 10 users", HTTPStatus.OK)

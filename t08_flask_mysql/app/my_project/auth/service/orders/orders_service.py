@@ -4,3 +4,6 @@ from t08_flask_mysql.app.my_project.auth.service.general_service import GeneralS
 
 class OrdersService(GeneralService):
     _dao = orders_dao
+
+    def get_min_max_avg_sum_of_cost(self, operator: str):
+        return self._dao.get_min_max_avg_sum_of_cost(operator)

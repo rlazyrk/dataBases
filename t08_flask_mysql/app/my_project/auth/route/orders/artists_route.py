@@ -18,13 +18,19 @@ def get_artist(artists_id: int) -> Response:
     return make_response(jsonify(artists_controller.find_by_id(artists_id)), HTTPStatus.OK)
 
 
-@artists_bp.post('')
+# @artists_bp.post('')
+# def post_artists() -> Response:
+#     json = request.get_json()
+#     artist = Artists.create_from_dto(json)
+#     artists_controller.create(artist)
+#     return make_response(jsonify(artist.put_into_dto()), HTTPStatus.OK)
+
+@artists_bp.post('/mtm')
 def post_artists() -> Response:
     json = request.get_json()
     artist = Artists.create_from_dto(json)
-    artists_controller.create(artist)
+    artists_controller.create_with_mtm_table(artist, json.get('events', []))
     return make_response(jsonify(artist.put_into_dto()), HTTPStatus.OK)
-
 
 @artists_bp.put('/<int:artists_id>')
 def put_artists(artists_id: int) -> Response:

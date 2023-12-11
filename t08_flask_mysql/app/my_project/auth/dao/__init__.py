@@ -16,6 +16,7 @@ from .orders.seats_dao import SeatsDao
 from .orders.tickets_dao import TicketsDao
 from .orders.travel_tickets_dao import TravelTicketsDao
 from .orders.users_dao import UsersDao
+from .orders.referrals_dao import ReferralsDao
 
 
 artists_dao = ArtistsDao()
@@ -29,3 +30,4 @@ seats_dao = SeatsDao()
 tickets_dao = TicketsDao()
 travel_tickets_dao = TravelTicketsDao()
 users_dao = UsersDao()
+referrals_dao = ReferralsDao()

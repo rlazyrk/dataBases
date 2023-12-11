@@ -16,6 +16,8 @@ class Orders(db.Model, IDto):
 
     user = db.relationship('Users', backref='orders')
     delivery = db.relationship('Delivery', backref='orders')
+    payment = db.relationship('Payments', backref='orders')
+    tickets_order = db.relationship('Tickets', backref='orders')
 
     def __repr__(self):
         return f"Order({self.idOrders}, {self.Users_idUsers}, `{self.Order_date_time}`, {self.Cost}, {self.Delivery_idDelivery})"
@@ -36,5 +38,14 @@ class Orders(db.Model, IDto):
             "Users_idUsers": self.Users_idUsers,
             "Order_date_time": self.Order_date_time,
             "Cost": self.Cost,
-            "Delivery_idDelivery": self.Delivery_idDelivery
+            "Delivery_idDelivery": self.Delivery_idDelivery,
+            "User": {
+                "UserId": self.user.idUsers
+            },
+            "Payment": [
+                {"idPayments": payment.idPayments} for payment in self.payment
+            ],
+            "Tickets": [
+                ticket.put_into_dto() for ticket in self.tickets_order
+            ]
         }

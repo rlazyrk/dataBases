@@ -26,6 +26,7 @@ def register_routes(app: Flask) -> None:
     from .orders.users_route import users_bp
     from .orders.tickets_route import tickets_bp
     from .orders.artists_event_connect import artists_events_connect_bp
+    from .orders.referral_routre import referrals_bp
 
     app.register_blueprint(artists_bp)
     app.register_blueprint(delivery_bp)
@@ -38,6 +39,7 @@ def register_routes(app: Flask) -> None:
     app.register_blueprint(users_bp)
     app.register_blueprint(tickets_bp)
     app.register_blueprint(artists_events_connect_bp)
+    app.register_blueprint(referrals_bp)
     app.register_blueprint(err_handler_bp)
 
 

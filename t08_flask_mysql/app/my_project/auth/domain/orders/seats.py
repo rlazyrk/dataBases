@@ -13,8 +13,7 @@ class Seats(db.Model, IDto):
     row = db.Column(db.Integer, nullable=False)
     seat_number = db.Column(db.Integer, nullable=False)
     free = db.Column(db.Boolean, nullable=False)
-
-    place = db.relationship('Places', backref='seats')
+    place = db.relationship('Places', backref='seats_ref')
 
     def __repr__(self):
         return f"Seat({self.idSeats}, {self.Places_idPlaces}, {self.row}, {self.seat_number}, {self.free})"

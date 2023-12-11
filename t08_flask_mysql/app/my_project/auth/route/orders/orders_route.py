@@ -45,3 +45,8 @@ def patch_order(order_id: int) -> Response:
 def delete_order(order_id: int) -> Response:
     orders_controller.delete(order_id)
     return make_response("Order deleted", HTTPStatus.OK)
+
+@orders_bp.get('/<string:operator>')
+def get_min_max_avg_sum_of_cost(operator: str):
+    print(orders_controller.get_min_max_avg_sum_of_cost(operator))
+    return make_response(orders_controller.get_min_max_avg_sum_of_cost(operator),HTTPStatus.OK)
